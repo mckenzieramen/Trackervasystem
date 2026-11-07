@@ -67,7 +67,7 @@ git remote add origin YOUR_GITHUB_REPOSITORY_URL
 git push -u origin main
 ```
 
-If the repository already has files, pull/clone it first and merge carefully rather than overwriting existing work. This package has not been pushed to your GitHub; your repository URL was not supplied.
+If the repository already has files, pull/clone it first and merge carefully rather than overwriting existing work. The project is maintained in https://github.com/mckenzieramen/Trackervasystem . The repository includes the source and safe environment template; live credentials belong only on your server.
 
 ## 3. Host it online
 

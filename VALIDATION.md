@@ -6,4 +6,5 @@
 - The frontend fixture is excluded from this delivery. The delivered app starts with an empty database and requires owner setup.
 - CSS includes tablet/mobile breakpoints, horizontally scrollable calendar/board areas, keyboard focus states and prefers-reduced-motion support. Mobile hardware/viewport testing was not performed in this session.
 - Google OAuth, Gmail send, Google Calendar/Drive/Sheets and OpenAI live calls were not tested with real credentials. These need the owner’s configuration and account consent.
-- Not deployed or pushed to a GitHub repository. No repository URL was supplied.
+- Source verified against mckenzieramen/Trackervasystem. Missing environment template and ignore files were added through a follow-up commit.
+- A production deployment and live external account connections have not been configured or verified.
