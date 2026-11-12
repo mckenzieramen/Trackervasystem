@@ -1,7 +1,10 @@
+import {handleD1} from '../lib/d1-backend.js';
+
 // Cloudflare Pages gateway; the existing Node backend remains the source of truth.
 export async function onRequest(context) {
  const {request,env,next}=context;const url=new URL(request.url);
  if(!url.pathname.startsWith('/api/')&&!url.pathname.startsWith('/auth/'))return next();
+ if(env.DB)return handleD1(request,env);
  const reply=(error,status)=>Response.json({error,code:'BACKEND_UNAVAILABLE'},{status,headers:{'Cache-Control':'no-store'}});
  if(!env.VA_BACKEND_URL)return reply('The private backend is not connected yet. Configure VA_BACKEND_URL in Cloudflare Pages.',503);
  let upstream;try{upstream=new URL(env.VA_BACKEND_URL)}catch{return reply('The backend URL is not valid.',503)}
