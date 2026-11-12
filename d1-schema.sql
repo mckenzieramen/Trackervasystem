@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS users(id TEXT PRIMARY KEY,email TEXT UNIQUE,name TEXT,password TEXT,profile TEXT);
+CREATE TABLE IF NOT EXISTS sessions(hash TEXT PRIMARY KEY,user TEXT,csrf TEXT,expires INTEGER);
+CREATE TABLE IF NOT EXISTS records(user TEXT,kind TEXT,id TEXT,data TEXT,version INTEGER DEFAULT 1,PRIMARY KEY(user,kind,id));
+CREATE TABLE IF NOT EXISTS integrations(user TEXT,service TEXT,data TEXT,PRIMARY KEY(user,service));
+CREATE TABLE IF NOT EXISTS oauth(state TEXT PRIMARY KEY,user TEXT,service TEXT,verifier TEXT,expires INTEGER);
+CREATE TABLE IF NOT EXISTS history(user TEXT,id TEXT PRIMARY KEY,time TEXT,message TEXT);
+CREATE TABLE IF NOT EXISTS idempotency(user TEXT,key TEXT,result TEXT,PRIMARY KEY(user,key));
+CREATE INDEX IF NOT EXISTS sessions_expiry ON sessions(expires);
+CREATE INDEX IF NOT EXISTS oauth_expiry ON oauth(expires);
+CREATE INDEX IF NOT EXISTS history_user_time ON history(user,time);
+CREATE TABLE IF NOT EXISTS rate_limits(key TEXT PRIMARY KEY,expires INTEGER NOT NULL,count INTEGER NOT NULL);
